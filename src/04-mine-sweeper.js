@@ -21,8 +21,65 @@
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new Error('Not implemented');
+function minesweeper(matrix) {
+  const mtx = matrix;
+  let error = 0;
+  for (let i = 0; i < mtx.length; i++) {
+    for (let j = 0; j < mtx[0].length; j++) {
+      if (!mtx[i][j]) {
+        mtx[i][j] = 0;
+        try {
+          if (mtx[i - 1][j - 1] === true) mtx[i][j]++;
+        } catch (e) {
+          error++;
+        }
+        try {
+          if (mtx[i - 1][j] === true) mtx[i][j]++;
+        } catch (e) {
+          error++;
+        }
+        try {
+          if (mtx[i - 1][j + 1] === true) mtx[i][j]++;
+        } catch (e) {
+          error++;
+        }
+        try {
+          if (mtx[i][j - 1] === true) mtx[i][j]++;
+        } catch (e) {
+          error++;
+        }
+        try {
+          if (mtx[i][j + 1] === true) mtx[i][j]++;
+        } catch (e) {
+          error++;
+        }
+        try {
+          if (mtx[i + 1][j - 1] === true) mtx[i][j]++;
+        } catch (e) {
+          error++;
+        }
+        try {
+          if (mtx[i + 1][j] === true) mtx[i][j]++;
+        } catch (e) {
+          error++;
+        }
+        try {
+          if (mtx[i + 1][j + 1] === true) mtx[i][j]++;
+        } catch (e) {
+          error++;
+        }
+      }
+    }
+  }
+  error = 1;
+  const resMtx = mtx.map((item) => {
+    const itm = item.map((elem) => {
+      if (elem === true) return error;
+      return elem;
+    });
+    return itm;
+  });
+  return resMtx;
 }
 
 module.exports = minesweeper;
