@@ -10,16 +10,15 @@ const ListNode = require('../extensions/list-node');
  * queue.dequeue(); // returns the top element from queue and deletes it, returns 1
  *
  */
-
 class Queue {
   constructor() {
     this.first = null;
     this.last = null;
-    this.size = 0;
+    this.length = 0;
   }
 
   get size() {
-    return this.size;
+    return this.length;
   }
 
   enqueue(element) {
@@ -32,7 +31,8 @@ class Queue {
       this.last = newNode;
     }
 
-    this.size++;
+    this.length++;
+    return this;
   }
 
   dequeue() {
@@ -44,9 +44,9 @@ class Queue {
 
     this.first = this.first.next;
 
-    this.size--;
+    this.length--;
 
-    return temp.element;
+    return temp.value;
   }
 }
 
